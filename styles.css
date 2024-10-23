@@ -184,11 +184,11 @@ textarea {
 }
 
 .product-card:hover {
-  background-color: rgba(255, 131, 135, .1) !important;
+  background-image: linear-gradient(135deg, rgba(250, 215, 161, .1) 10%, rgb(255, 131, 135, .1) 100%);
   border: 1px solid rgb(172, 172, 172) !important
 }
 
-.product-card>button {
+.product-card > button {
   border: none;
   color: white;
   background-color: var(--accent);
@@ -199,7 +199,7 @@ textarea {
   z-index: 1;
 }
 
-.product-card:hover>button {
+.product-card:hover > button {
   visibility: visible;
 }
 
@@ -207,6 +207,26 @@ textarea {
   content: "";
   position: absolute;
   inset: 0;
+}
+
+.testimonials-container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(1, 1fr);
+  max-width: 1000px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.testimonial-card {
+  background-image: linear-gradient(135deg, rgba(250, 215, 161, .1) 10%, rgb(255, 131, 135, .1) 100%);
+}
+
+.testimonial-img {
+  max-width: 70px;
+  aspect-ratio: 1 !important;
+  width: 100%;
+  border-radius: 100%;
 }
 
 footer a {
@@ -231,6 +251,10 @@ footer a:hover {
 
 @media (min-width: 600px) {
   #products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonials-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
