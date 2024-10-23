@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CachivacheStore</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Carrito</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="cart-content" class="modal-body">
+          <div class="py-2 d-flex align-items-center">
+            <div class="cart-product-img-container border rounded">
+              <img class="w-100" src="/images/image-placeholder.png" alt="">
+            </div>
+            <div class="cart-product-details-container ms-2">
+              <p class="mb-0 fw-semibold">Título de producto</p>
+              <p class="mb-0 fw-semibold text-accent">$100</p>
+            </div>
+            <div class="ms-auto d-flex align-items-center">
+              <button class="cart-product-control btn btn-dark">&times;</button>
+              <p id="cart-product-quantity-${item.product.id}" class="mb-0 mx-2">1</p>
+              <button class="cart-product-control btn btn-dark">&plus;</button>
+            </div>
+          </div>
+          <div class="py-2 d-flex align-items-center">
+            <div class="cart-product-img-container border rounded">
+              <img class="w-100" src="/images/image-placeholder.png" alt="">
+            </div>
+            <div class="cart-product-details-container ms-2">
+              <p class="mb-0 fw-semibold">Título de producto</p>
+              <p class="mb-0 fw-semibold text-accent">$100</p>
+            </div>
+            <div class="ms-auto d-flex align-items-center">
+              <button class="cart-product-control btn btn-dark">&times;</button>
+              <p id="cart-product-quantity-${item.product.id}" class="mb-0 mx-2">1</p>
+              <button class="cart-product-control btn btn-dark">&plus;</button>
+            </div>
+          </div>          
+        </div>
+        <div id="cart-footer" class="modal-footer">
+          <p id="cart-total" class="fw-semibold me-auto">Total: $200</p>
+          <button type="button" class="btn btn-secondary">Vaciar</button>
+          <button type="button" class="btn btn-dark">Ir a pagar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid min-vh-100 d-flex flex-column">
+
+    <header class="sticky-top">
+      <nav class="navbar navbar-expand-md bg-white py-3 border-bottom">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold" href="/index.html">CachivacheStore</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">L'Élite Cachivache</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav flex-grow-1 ps-3">
+                <li class="nav-item">
+                  <a class="nav-link fw-semibold" href="/index.html">Catalogo</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-semibold" href="/contacto.html">Contacto</a>
+                </li>
+              </ul>
+
+              <a href="#" class="btn me-3">
+                <svg height="25" width="25" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z">
+                  </path>
+                </svg>
+              </a>
+
+              <!-- Button trigger modal -->
+              <button title="Mostrar carrito" id="show-cart-btn" type="button" class="btn position-relative" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div id="cart-item-counter" class="hidden-cart-counter">2</div>
+                <svg height="25" width="25" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z">
+                  </path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="contact-page" class="container-fluid py-5 px-0">
+        <form action="https://formspree.io/f/mgvevkzy" method="post" class="contact-form mx-auto">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input name="name" required type="text" class="form-control" id="name" placeholder="Juan Pérez">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input name="email" required type="email" class="form-control" id="email" placeholder="ejemplo@mail.com">
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Mensaje</label>
+            <textarea name="message" required class="form-control" id="message" rows="3" placeholder="Escribe tu mensaje..." maxlength="250" minlength="50"></textarea>
+          </div>
+          <button type="submit" class="btn btn-dark mt-3 w-100">Submit</button>
+        </form>
+  
+      </section>
+    </main>
+
+    <footer class="bg-dark rounded mb-3 container-fluid mt-auto p-5 text-white">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4>Federico Burgos</h4>
+          <p class="w-75 text-white-50">Este sitio ha sido desarrollado exclusivamente como proyecto final para el curso Frontend 2024 organizado por <a class="text-white" href="https://inscripcionesagencia.bue.edu.ar/talentotech/">Talento Tech</a>. Todo el contenido presentado es completamente ficticio y ha sido creado con fines ilustrativos.</p>
+          <div class="d-flex">
+            <a class="me-4 text-decoration-none text-white d-flex align-items-center" href="https://github.com/fedev95" target="_blank">
+              <svg height="25" width="25" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+              </svg>
+              <span class="ms-2">GitHub</span>
+            </a>
+            <a class="text-decoration-none text-white d-flex align-items-center" href="https://www.linkedin.com/in/federicoburgos/" target="_blank">
+              <svg height="25" width="25" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" />
+              </svg>
+              <span class="ms-2">LinkedIn</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-5 mt-lg-0 d-flex flex-column align-items-start">
+          <h4>Soporte al cliente</h4>
+          <a class="text-decoration-none text-white mb-2" href="/contacto.html">Contacto</a>
+          <a class="text-decoration-none text-white mb-2" href="">Mi cuenta</a>
+          <a class="text-decoration-none text-white mb-2" href="">Recompensas</a>
+          <a class="text-decoration-none text-white mb-2" href="">Privacidad</a>
+        </div>
+
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+</body>
+</html>

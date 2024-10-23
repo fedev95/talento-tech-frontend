@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Homemade+Apple&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --accent: #ff8387;
+  --accent-light: rgba(255, 131, 135, .2);
+  --light-gray: #dddddd;
+  --gray: #9e9e9e;
+  --dark-gray: #525252;
+  --black: #212529;
+}
+
+* {
+  font-family: "Noto Sans", sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+textarea {
+  resize: none !important;
+  field-sizing: content !important;
+}
+
+.text-accent {
+  color: var(--accent) !important;
+}
+
+.bg-accent {
+  background-color: var(--accent) !important;
+}
+
+.bg-accent-light {
+  background-color: var(--accent-light) !important;
+}
+
+.btn-banner {
+  background-color: rgba(255, 255, 255, 0.55) !important;
+  color: black !important;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.75) !important;
+  }
+}
+
+.cart-product-img-container {
+  width: 60px;
+  aspect-ratio: 1 !important;
+}
+
+.cart-product-img-container>img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cart-product-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px !important;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+}
+
+#cart-item-counter {
+  background-color: var(--accent);
+  position: absolute;
+  color: white;
+  min-width: 20px;
+  height: 20px;
+  padding: 3px;
+  font-size: 10px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  top: -10%;
+  right: -10%;
+}
+
+.container-fluid {
+  max-width: 1270px;
+}
+
+.navbar {
+  top: 0;
+  margin: auto;
+}
+
+.nav-link:hover {
+  color: var(--accent) !important;
+}
+
+.carousel {
+  height: 400px;
+}
+
+.carousel-item-content {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  height: 400px;
+}
+
+.carousel-bg-1 {
+  background-image: linear-gradient(135deg, #FAD7A1 10%, #ff8387 100%);
+}
+
+.carousel-bg-2 {
+  background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+}
+
+.carousel-bg-3 {
+  background-image: linear-gradient(109.6deg, rgba(255, 179, 189, 1) 1.8%, rgba(254, 248, 154, 1) 50.6%, rgba(161, 224, 186, 1) 100.3%);
+}
+
+.carousel-info {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  z-index: 2;
+}
+
+.carousel-info>h2 {
+  font-weight: 800;
+  font-size: 50px;
+}
+
+.carousel-image {
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-image>img {
+  height: 420px;
+  min-width: 420px;
+  max-width: 420px !important;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 50%;
+}
+
+.mobile-category-container {
+  position: sticky !important;
+  z-index: 10;
+  top: 90px;
+}
+
+.category-selector {
+  cursor: pointer;
+}
+
+.category-selector:hover {
+  background-color: var(--accent-light) !important;
+}
+
+.active-category {
+  background-color: var(--accent-light) !important;
+}
+
+#mobile-categories-list {
+  max-height: 400px;
+  overflow: auto;
+}
+
+#categories-list {
+  position: sticky;
+  top: 90px;
+}
+
+#products-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
+
+.product-card:hover {
+  background-color: rgba(255, 131, 135, .1) !important;
+  border: 1px solid rgb(172, 172, 172) !important
+}
+
+.product-card>button {
+  border: none;
+  color: white;
+  background-color: var(--accent);
+  visibility: hidden;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.product-card:hover>button {
+  visibility: visible;
+}
+
+.product-card-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+footer a {
+  transition-duration: 150ms;
+}
+
+footer a:hover {
+  color: var(--accent) !important;
+}
+
+.contact-form {
+  max-width: 600px;
+  width: 100%;
+}
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: 0px 0px 0px 4px var(--accent-light) !important;
+  outline: none !important;
+  border: 1px solid var(--accent) !important;
+}
+
+@media (min-width: 600px) {
+  #products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 800px) {
+  #products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel-item-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
