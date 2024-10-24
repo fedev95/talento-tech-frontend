@@ -128,9 +128,9 @@ textarea {
   z-index: 2;
 }
 
-.carousel-info>h2 {
+.carousel-info > h2 {
   font-weight: 800;
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .carousel-image {
@@ -250,6 +250,11 @@ footer a:hover {
 }
 
 @media (min-width: 600px) {
+  .carousel-info > h2 {
+    font-weight: 800;
+    font-size: 50px;
+  }
+
   #products-grid {
     grid-template-columns: repeat(2, 1fr);
   }
