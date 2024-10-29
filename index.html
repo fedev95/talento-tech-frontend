@@ -17,38 +17,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div id="cart-content" class="modal-body">
-          <div class="py-2 d-flex align-items-center">
-            <div class="cart-product-img-container border rounded">
-              <img class="w-100" src="/images/image-placeholder.png" alt="">
-            </div>
-            <div class="cart-product-details-container ms-2">
-              <p class="mb-0 fw-semibold">Título de producto</p>
-              <p class="mb-0 fw-semibold text-accent">$100</p>
-            </div>
-            <div class="ms-auto d-flex align-items-center">
-              <button class="cart-product-control btn btn-dark">&times;</button>
-              <p id="cart-product-quantity-${item.product.id}" class="mb-0 mx-2">1</p>
-              <button class="cart-product-control btn btn-dark">&plus;</button>
-            </div>
-          </div>
-          <div class="py-2 d-flex align-items-center">
-            <div class="cart-product-img-container border rounded">
-              <img class="w-100" src="/images/image-placeholder.png" alt="">
-            </div>
-            <div class="cart-product-details-container ms-2">
-              <p class="mb-0 fw-semibold">Título de producto</p>
-              <p class="mb-0 fw-semibold text-accent">$100</p>
-            </div>
-            <div class="ms-auto d-flex align-items-center">
-              <button class="cart-product-control btn btn-dark">&times;</button>
-              <p id="cart-product-quantity-${item.product.id}" class="mb-0 mx-2">1</p>
-              <button class="cart-product-control btn btn-dark">&plus;</button>
-            </div>
-          </div>          
+          <!-- Acá se cargan los items en el carrito -->
         </div>
         <div id="cart-footer" class="modal-footer">
-          <p id="cart-total" class="fw-semibold me-auto">Total: $200</p>
-          <button type="button" class="btn btn-secondary">Vaciar</button>
+          <p id="cart-total" class="fw-semibold me-auto"></p>
+          <button onclick="clearCart()" type="button" class="btn btn-secondary">Vaciar</button>
           <button type="button" class="btn btn-dark">Ir a pagar</button>
         </div>
       </div>
@@ -89,8 +62,8 @@
               </a>
 
               <!-- Button trigger modal -->
-              <button title="Mostrar carrito" id="show-cart-btn" type="button" class="btn position-relative" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <div id="cart-item-counter" class="hidden-cart-counter">2</div>
+              <button onclick="setCartContent()" title="Mostrar carrito" id="show-cart-btn" type="button" class="btn position-relative" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div id="cart-item-counter" class="hidden-cart-counter"></div>
                 <svg height="25" width="25" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round"
