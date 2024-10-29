@@ -30,13 +30,14 @@ const categorySelector = (category) => {
 const productCard = (product) => {
   return `
     <article class="product-card bg-white rounded border d-flex flex-column position-relative">
-      <button onclick="addToCart(${product.id})" title="Añadir al carrito" class="position-absolute top-0 end-0 m-2">${cartIcon}</button>
+      <button onclick="addToCart(${product.id})" title="Añadir al carrito" class="d-none d-md-block position-absolute top-0 end-0 m-2">${cartIcon}</button>
       <div class="ratio ratio-16x9">
         <img src="${product.thumbnail}" alt="" class="w-100 object-fit-contain">
       </div>
-      <div class="d-flex flex-column p-3">
+      <div class="d-flex flex-column p-3 h-100">
         <a href="/producto.html?id=${product.id}" class="product-card-link text-decoration-none text-dark fw-bold mb-3">${product.title}</a>
-        <p class="fw-bold m-0 text-accent">$${product.price}</p>
+        <p class="fw-bold mb-3 text-accent">$${product.price}</p>
+        <button onclick="addToCart(${product.id})" class="d-md-none add-to-cart-mobile z-1">Añadir al carrito</button>
       </div>
     </article>
   `;

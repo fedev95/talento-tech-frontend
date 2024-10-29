@@ -302,6 +302,32 @@ footer a:hover {
   width: 100%;
 }
 
+.back-btn-container {
+  position: sticky;
+  top: 89px;
+}
+
+.back-btn {
+  width: auto;
+  border-radius: 50%;
+  aspect-ratio: 1 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: var(--light-gray);
+  color: currentColor;
+}
+
+.add-to-cart-mobile {
+  border-radius: 9999px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 5px;
+  margin-top: auto;
+}
+
 @media (min-width: 600px) {
   .carousel-info > h2 {
     font-weight: 800;
