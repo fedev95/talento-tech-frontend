@@ -9,6 +9,13 @@ const cartIcon = `
   </svg>
 `;
 
+const spinnerLoader = `
+  <div class="spinner-container py-5 d-flex flex-column">
+    <span class="loader"></span>
+    <p>Cargando contenido...</p>
+  </div>
+`;
+
 const mobileCategorySelector = (category) => {
   return `
     <li><a onclick="setActiveCategory('${category.name}'); fetchProductsData('${category.slug}')" class="dropdown-item category-selector" href="#products-container">${category.name}</a></li>
@@ -79,12 +86,17 @@ const fetchCategories = () => {
 }
 
 function fetchProductsData(category) {
+  
   let url = '';
+  
   if (category) {
     url = `${apiURL}/products/category/${category}`;
   } else {
     url = `${apiURL}/products`
   }
+
+  const productsGrid = document.getElementById('products-grid');
+  productsGrid.innerHTML = spinnerLoader;
 
   fetch(url)
     .then(response => {
@@ -95,7 +107,6 @@ function fetchProductsData(category) {
     })
     .then(data => {
       products = data.products;
-      const productsGrid = document.getElementById('products-grid');
       productsGrid.innerHTML = '';
       products.forEach(item => {
         productsGrid.innerHTML += productCard(item);
