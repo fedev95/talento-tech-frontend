@@ -35,7 +35,7 @@ const productCard = (product) => {
         <img src="${product.thumbnail}" alt="" class="w-100 object-fit-contain">
       </div>
       <div class="d-flex flex-column p-3">
-        <a class="product-card-link text-decoration-none text-dark fw-bold mb-3" href="/producto.html" class="fw-bold">${product.title}</a>
+        <a href="/producto.html?id=${product.id}" class="product-card-link text-decoration-none text-dark fw-bold mb-3">${product.title}</a>
         <p class="fw-bold m-0 text-accent">$${product.price}</p>
       </div>
     </article>

@@ -22,20 +22,33 @@ const cartItem = (item) => {
 function addToCart(id) {
   const productExist = cartProducts.find((item) => item.product.id === id);
   if (!productExist) {
-    const product = products.find(product => product.id === id);
-    cartProducts.push({
-      product: product,
-      quantity: 1
-    });
+    fetch(`${apiURL}/products/${id}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+        return response.json();
+      })
+      .then(data => {
+        cartProducts.push({
+          product: data,
+          quantity: 1
+        });
+        saveCart();
+        setCartItemCounter();
+      })
+      .catch(error => {
+        console.error('Error al realizar el fetch:', error);
+      });
   } else {
     if (productExist.quantity < 10) {
       productExist.quantity++;
+      saveCart();
+      setCartItemCounter();
     } else {
       alert('Llegaste al máximo de unidades de un mismo artículo.');
     }
   }
-  saveCart();
-  setCartItemCounter();
 }
 
 const setCartItemCounter = () => {
