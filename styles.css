@@ -320,7 +320,6 @@ footer a:hover {
 }
 
 .add-to-cart-mobile {
-  border-radius: 9999px;
   background-color: var(--accent);
   color: white;
   border: none;

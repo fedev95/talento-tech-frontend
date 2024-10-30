@@ -37,7 +37,7 @@ const productCard = (product) => {
       <div class="d-flex flex-column p-3 h-100">
         <a href="/producto.html?id=${product.id}" class="product-card-link text-decoration-none text-dark fw-bold mb-3">${product.title}</a>
         <p class="fw-bold mb-3 text-accent">$${product.price}</p>
-        <button onclick="addToCart(${product.id})" class="d-md-none add-to-cart-mobile z-1">Añadir al carrito</button>
+        <button onclick="addToCart(${product.id})" class="d-md-none rounded py-2 add-to-cart-mobile z-1">Añadir al carrito</button>
       </div>
     </article>
   `;
